@@ -12,12 +12,14 @@ const productsListTemplate = function (product) {
 }
 
 
-
+const renderAdmin = async function (){
+    const wrapper = document.querySelector('#products-list')
+    let products = await getAllProducts()
+    wrapper.innerHTML = products.map(element => productsListTemplate(element)).join('')
+}
 
 
 
 window.onload = async () => {
-    const wrapper = document.querySelector('#products-list')
-    let products = await getAllProducts()
-    wrapper.innerHTML = products.map(element => productsListTemplate(element)).join('')
+    await renderAdmin()
 }

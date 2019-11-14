@@ -47,19 +47,21 @@ const addProduct = async () => {
 
     let reponse = await request.json()
     if (request.status === 200) alert('saved')
+     await renderAdmin()
 }
 
 const deleteProduct = async function(id) {
+    event.stopPropagation()
+    event.preventDefault()
     const deleteInit = {
         method: 'DELETE',
         headers: {
-            'content-type': 'application/json',
             'Authorization': `Basic ${autorization}`,
         },
     }
     let request = await fetch(url + id,deleteInit)
     let reponse = await request.json()
-    if (request.status === 200) alert('saved')
-
-    
+    if (request.status === 200) {
+        await renderAdmin()
+    }
 }
